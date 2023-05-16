@@ -1,41 +1,15 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom'
-import { tasksLoader, rewardsLoader } from './apiCalls';
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react'
+import TaskList from './pages/taskList'
 
 function App() {
-  const [allTasks, setAllTasks] = useState([])
-  const [allRewards, setAllRewards] = useState([])
-
-  useEffect(() => {
-    const fetchTasks= async () => {
-      try {
-        const data = await tasksLoader()
-        setAllTasks(data)
-      } catch(err) {
-        console.log(err)
-      }
-    }
-    fetchTasks()
-  })
-
-  useEffect(() => {
-    const fetchRewards= async () => {
-      try {
-        const data = await rewardsLoader()
-        setAllRewards(data)
-      } catch(err) {
-        console.log(err)
-      }
-    }
-    fetchRewards()
-  })
+  const [score, setScore] = useState(0)
 
   return (
     <div className="App">
       <Routes>
-        <Route></Route>
+        <Route path="/" element={<TaskList mods={{score, setScore}} />} />
       </Routes>
     </div>
   );
