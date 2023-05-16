@@ -26,7 +26,7 @@ const TaskList = (props) => {
                     <Link to={`/tasks/${value._id}`}>
                     <h3>{value.name}</h3>
                     </Link>
-                    <h4>{value.worth}</h4>
+                    <h4>{value.value}</h4>
                     <button onClick={handleClick} value={value._id}>Completed</button>
                 </div>
             )
