@@ -23,8 +23,8 @@ const TaskList = (props) => {
         const taskArr = tasks.map((value, idx) => {
             return(
                 <div key={idx}>
-                    <Link to={`/tasks/${value._id}`}>
-                    <h3>{value.name}</h3>
+                    <Link to={`/task/${value._id}`}>
+                        <h3>{value.name}</h3>
                     </Link>
                     <h4>{value.value}</h4>
                     <button onClick={handleClick} value={value._id}>Completed</button>
@@ -47,6 +47,7 @@ const TaskList = (props) => {
     return(
         <div>
             <h3>{props.mods.score}</h3>
+            <Link to="/tasks/new"><button>New Task</button></Link>
             {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
         </div>
     )
