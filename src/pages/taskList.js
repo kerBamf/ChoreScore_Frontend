@@ -1,39 +1,55 @@
-const taskList = (props) => {
-    
-    let tasks = props.tasks
-    const setTasks = props.setAllTasks
-    function getList() {
-        tasks.map((value, idx) => {
-            return(
-                <div>
-                    <h3>{value.name}</h3>
-                    <h4>{value.value}</h4>
-                    <button>Completed</button>
-                    <button>Edit</button>
-                    <button onClick={handleDelete(value._id)}>Delete</button>
-                </div>
-            )
-        })
-    }
-    
-    async function handleDelete(id) {
-        try {
-            e.preventDefault();
-            await fetch(`http://localhost:4000/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+import { tasksLoader, taskLoader, deleteTask } from "../apiCalls"
+import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 
 
+const TaskList = (props) => {
+    const [tasks, setTasks] = useState([])
+
+    async function getTasks() {
+        try{
+        let myTasks = await tasksLoader();
+        setTasks(myTasks);
         } catch(err) {
             console.log(err)
         }
     }
 
-    
+    useEffect(() => {
+        getTasks()
+    }, []);
+
+    function getList() {
+        const taskArr = tasks.map((value, idx) => {
+            return(
+                <div key={idx}>
+                    <Link to={`/tasks/${value._id}`}>
+                    <h3>{value.name}</h3>
+                    </Link>
+                    <h4>{value.worth}</h4>
+                    <button onClick={handleClick} value={value._id}>Completed</button>
+                </div>
+            )
+        })
+        return taskArr
+    }
+
+    async function handleClick(e) {
+        e.preventDefault();
+        const task = await taskLoader(e.target.value)
+        console.log(task)
+        let currentScore = props.mods.score
+        props.mods.setScore(currentScore + task.value)
+        await deleteTask(task._id)
+        getTasks()
+    }
+
     return(
-        <></>
+        <div>
+            <h3>{props.mods.score}</h3>
+            {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
+        </div>
     )
 }
+
+export default TaskList
