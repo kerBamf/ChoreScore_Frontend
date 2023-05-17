@@ -42,8 +42,8 @@ const TaskList = (props) => {
         let currentTasksDone = props.mods.tasksDone
         props.mods.setScore(currentScore + task.value)
         props.mods.setTasksDone(currentTasksDone + 1)
-        await deleteTask(task._id)
-        getTasks()
+        // await deleteTask(task._id)
+        // getTasks()
     }
 
     return(
@@ -52,6 +52,7 @@ const TaskList = (props) => {
             <h3>Tasks Completed: {props.mods.tasksDone}</h3>
             <Link to="/task/new"><button>New Task</button></Link>
             {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
+            <Link to="/rewards"><button>Rewards</button></Link>
         </div>
     )
 }
