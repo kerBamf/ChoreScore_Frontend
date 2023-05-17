@@ -12,7 +12,6 @@ function ShowTask() {
         try {
         const rawTask = await taskLoader(id)
         setTask(rawTask)
-        console.log(task)
         } catch(err) {
             console.log(err)
         }

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { postTask } from '../apiCalls'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const NewTask = () => {
     const [taskForm, setTaskForm] = useState({
@@ -23,7 +23,7 @@ const NewTask = () => {
             console.log(taskForm)
             await postTask(taskForm)
             e.target.reset();
-            setSentState(true)
+            showSent()
             console.log(sentState)
         } catch(err) {
             console.log(err)
@@ -32,12 +32,10 @@ const NewTask = () => {
 
     const [sentState, setSentState] = useState(false)
     function showSent() {
+        setSentState(true)
         setTimeout(function() {
-            return (
-                <p>Sent!</p>
-            )
+            setSentState(false)
         }, 5000)
-        setSentState(false)
 
     }
 
@@ -57,7 +55,7 @@ const NewTask = () => {
             </label>
             <button type='submit'>Send It</button>
         </form>
-        {/* {sentState ? {showSent} : <></>} */}
+        {sentState ? <h2>Sent!</h2> : null}
         <Link to="/"><h4>Home</h4></Link>
         </>
     )

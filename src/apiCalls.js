@@ -21,9 +21,24 @@ export const taskLoader = async (id) => {
     }
 }
 
+export function valueGenerator(dif, dur){
+    const durationMod = Math.floor(dur / 15)
+        let difficultyMod = () => {
+            if (dif === 1) {
+                return 1
+            } else if (dif === 2) {
+                return 1.25
+            } else if (dif === 3) {
+                return 1.5
+            } else {
+                return 1.75
+            }
+        }
+        return Math.floor(durationMod * difficultyMod()) + 1
+}
+
 export const postTask = async (object) => {
     try {
-        
         let newObject = {
             name: object.name,
             duration: parseInt(object.duration),
@@ -31,25 +46,8 @@ export const postTask = async (object) => {
             info: object.info,
             value: 1
         }
-        console.log(`Duration: ${newObject.duration}`)
-        let durationMod = null
-        durationMod = Math.floor(newObject.duration / 15)
-        console.log(`Duration mod: ${durationMod}`)
-        const dif = parseInt(object.difficulty)
-        let difficultyMod = () => {
-            if (dif == 1) {
-                return 1
-            } else if (dif == 2) {
-                return 1.25
-            } else if (dif == 3) {
-                return 1.5
-            } else {
-                return 1.75
-            }
-        }
-        console.log(`Combo ${Math.floor(durationMod * difficultyMod())}`)
-        newObject.value = Math.floor(durationMod * difficultyMod())
-        console.log(newObject)
+        newObject.value = valueGenerator(newObject.difficulty, newObject.duration)
+
         await fetch(URL + '/tasks', {
             method: 'POST',
             headers: {
@@ -64,12 +62,22 @@ export const postTask = async (object) => {
 
 export const putTask = async (object) => {
     try{
+        console.log(object._id)
+        let newObject = {
+            _id: object._id,
+            name: object.name,
+            duration: parseInt(object.duration),
+            difficulty: parseInt(object.difficulty),
+            info: object.info,
+            value: 1
+        }
+        newObject.value = valueGenerator(newObject.difficulty, newObject.duration)
         await fetch(URL + `/tasks/${object._id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(object)
+            body: JSON.stringify(newObject)
         })
     } catch(err) {
         console.log(err)
