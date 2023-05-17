@@ -109,6 +109,7 @@ function EditTask() {
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
+                    {/* {optionPreSelect(task.difficulty)} */}
                 </select>
             </label>
             <button type='submit'>Send It</button>

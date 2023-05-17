@@ -19,6 +19,12 @@ function App() {
           <Route path="edit/:id" element={<EditTask />} />
           <Route path=":id" element={<ShowTask />} />
         </Route>
+        <Route path="/rewards">
+          <Route path="" element={<Rewards mods={{score, setScore}} />} />
+          {/* <Route path="new" element={<NewReward />} />
+          <Route path="edit/:id" element={<EditReward />} />
+          <Route path=":id" element={<Show Reward />} />  */}
+        </Route>
       </Routes>
     </div>
   );

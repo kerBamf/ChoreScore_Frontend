@@ -52,6 +52,7 @@ const TaskList = (props) => {
             <h3>Tasks Completed: {props.mods.tasksDone}</h3>
             <Link to="/task/new"><button>New Task</button></Link>
             {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
+            <Link to="/rewards"></Link>
         </div>
     )
 }
