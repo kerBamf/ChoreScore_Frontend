@@ -5,6 +5,7 @@ import TaskList from './pages/taskList'
 import ShowTask from './pages/showTask'
 import NewTask from './pages/newTask'
 import EditTask from './pages/editTask'
+import Rewards from './pages/rewardList'
 
 function App() {
   const [score, setScore] = useState(0)

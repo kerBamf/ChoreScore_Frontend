@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 const Rewards = (props) => {
     const [rewards, setRewards] = useState([])
-    const currentScore = props.mods.currentScore
-    const setScore = props.mods.setScore()
+    const score = props.mods.score
+    console.log(score)
 
     async function getRewards() {
         try{
@@ -22,7 +22,7 @@ const Rewards = (props) => {
 
     function getList() {
         const rewardArr = rewards.map((value, idx) => {
-            if(value.cost <= currentScore){
+            if(value.cost <= props.mods.score){
             return(
                 <div key={idx}>
                     <Link to={`/rewards/${value._id}`}>
@@ -34,7 +34,11 @@ const Rewards = (props) => {
             )} else {
                 return (
                     <div key={idx}>
-                        <Link to
+                        <Link to={`/rewards/${value._id}`}>
+                            <h3>{value.name}</h3>
+                        </Link>
+                        <h4>Cost: {value.cost}</h4>
+                        <p>You do not have enough credits for this reward</p>
                     </div>
                 )
             }
@@ -43,6 +47,16 @@ const Rewards = (props) => {
     }
 
     function handleClick(e) {
-        setScore(currentScore - e.target.value)
+        props.mods.setScore(score - e.target.value)
     }
+
+    return (
+        <>
+            <h3>Credits: {score}</h3>
+            {getList()}
+            <Link to="/"><h4>Home</h4></Link>
+        </>
+    )
 }
+
+export default Rewards
