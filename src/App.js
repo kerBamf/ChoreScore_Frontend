@@ -6,6 +6,8 @@ import ShowTask from './pages/showTask'
 import NewTask from './pages/newTask'
 import EditTask from './pages/editTask'
 import Rewards from './pages/rewardList'
+import NewReward from './pages/newReward'
+import ShowReward from './pages/showReward'
 
 function App() {
   const [score, setScore] = useState(0)
@@ -22,8 +24,8 @@ function App() {
         </Route>
         <Route path="/rewards">
           <Route path="" element={<Rewards mods={{score, setScore}} />} />
-          {/* <Route path="new" element={<NewReward />} />
-          <Route path="edit/:id" element={<EditReward />} />
+          <Route path="new" element={<NewReward />} />
+          {/* <Route path="edit/:id" element={<EditReward />} />
           <Route path=":id" element={<Show Reward />} />  */}
         </Route>
       </Routes>

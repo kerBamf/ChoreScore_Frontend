@@ -53,6 +53,9 @@ const Rewards = (props) => {
     return (
         <>
             <h3>Credits: {score}</h3>
+            <Link to='/rewards/new'>
+                <button>New Reward</button>
+            </Link>
             {getList()}
             <Link to="/"><h4>Home</h4></Link>
         </>
