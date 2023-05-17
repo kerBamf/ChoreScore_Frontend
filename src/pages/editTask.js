@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { taskLoader, putTask, valueGenerator } from '../apiCalls'
+import { taskLoader, putTask } from '../apiCalls'
 import { useParams } from 'react-router'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -25,10 +25,6 @@ function EditTask() {
             ...baseState,
             [e.target.name]: e.target.value
         }))
-        // setTask((baseState) => ({
-        //     ...baseState,
-        //     [e.target.name]: e.target.value
-        // }))
     }
 
     const handleSubmit = async (e) => {
@@ -41,7 +37,7 @@ function EditTask() {
             getTask()
             setTimeout(function() {
                 navigate(`/task/${id}`)
-            }, 5000)
+            }, 4000)
         } catch(err) {
             console.log(err)
         }
@@ -52,7 +48,7 @@ function EditTask() {
         setSentState(true)
         setTimeout(function() {
             setSentState(false)
-        }, 5000)
+        }, 4000)
 
     }
 
