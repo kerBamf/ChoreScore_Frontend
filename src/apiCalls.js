@@ -23,12 +23,39 @@ export const taskLoader = async (id) => {
 
 export const postTask = async (object) => {
     try {
+        
+        let newObject = {
+            name: object.name,
+            duration: parseInt(object.duration),
+            difficulty: parseInt(object.difficulty),
+            info: object.info,
+            value: 1
+        }
+        console.log(`Duration: ${newObject.duration}`)
+        let durationMod = null
+        durationMod = Math.floor(newObject.duration / 15)
+        console.log(`Duration mod: ${durationMod}`)
+        const dif = parseInt(object.difficulty)
+        let difficultyMod = () => {
+            if (dif == 1) {
+                return 1
+            } else if (dif == 2) {
+                return 1.25
+            } else if (dif == 3) {
+                return 1.5
+            } else {
+                return 1.75
+            }
+        }
+        console.log(`Combo ${Math.floor(durationMod * difficultyMod())}`)
+        newObject.value = Math.floor(durationMod * difficultyMod())
+        console.log(newObject)
         await fetch(URL + '/tasks', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(object)
+            body: JSON.stringify(newObject)
         })
     } catch(err) {
         console.log(err)

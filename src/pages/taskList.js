@@ -47,7 +47,7 @@ const TaskList = (props) => {
     return(
         <div>
             <h3>{props.mods.score}</h3>
-            <Link to="/tasks/new"><button>New Task</button></Link>
+            <Link to="/task/new"><button>New Task</button></Link>
             {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
         </div>
     )
