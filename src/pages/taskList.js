@@ -26,7 +26,7 @@ const TaskList = (props) => {
                     <Link to={`/task/${value._id}`}>
                         <h3>{value.name}</h3>
                     </Link>
-                    <h4>{value.value}</h4>
+                    <h4>Value: {value.value}</h4>
                     <button onClick={handleClick} value={value._id}>Completed</button>
                 </div>
             )
@@ -39,14 +39,17 @@ const TaskList = (props) => {
         const task = await taskLoader(e.target.value)
         console.log(task)
         let currentScore = props.mods.score
+        let currentTasksDone = props.mods.tasksDone
         props.mods.setScore(currentScore + task.value)
-        await deleteTask(task._id)
-        getTasks()
+        props.mods.setTasksDone(currentTasksDone + 1)
+        // await deleteTask(task._id)
+        // getTasks()
     }
 
     return(
         <div>
-            <h3>{props.mods.score}</h3>
+            <h3>Credits Available: {props.mods.score}</h3>
+            <h3>Tasks Completed: {props.mods.tasksDone}</h3>
             <Link to="/task/new"><button>New Task</button></Link>
             {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
         </div>
