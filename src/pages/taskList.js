@@ -22,12 +22,14 @@ const TaskList = (props) => {
     function getList() {
         const taskArr = tasks.map((value, idx) => {
             return(
-                <div key={idx}>
-                    <Link to={`/task/${value._id}`}>
-                        <h3>{value.name}</h3>
-                    </Link>
-                    <h4>Value: {value.value}</h4>
-                    <button onClick={handleClick} value={value._id}>Completed</button>
+                <div className="card" key={idx}>
+                    <div className="card-body">
+                        <Link to={`/task/${value._id}`}>
+                            <h3 className="card-title">{value.name}</h3>
+                        </Link>
+                        <h6 className="card-subtitle">Value: {value.value}</h6>
+                        <button className="btn btn-secondary text-end" onClick={handleClick} value={value._id}>Completed</button>
+                    </div>
                 </div>
             )
         })
@@ -47,7 +49,7 @@ const TaskList = (props) => {
     }
 
     return(
-        <div>
+        <div className="container-md">
             <h3>Credits Available: {props.mods.score}</h3>
             <h3>Tasks Completed: {props.mods.tasksDone}</h3>
             <Link to="/task/new"><button>New Task</button></Link>
