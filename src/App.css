@@ -1,2 +1,5 @@
-
+.appContainer {
+    margin: 0 auto;
+    max-width: 750px;
+}
 

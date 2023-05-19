@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
@@ -9,6 +10,8 @@ import Rewards from './pages/rewardList'
 import NewReward from './pages/newReward'
 import ShowReward from './pages/showReward'
 import EditReward from './pages/editReward';
+import Footer from './components/footer'
+import Container from 'react-bootstrap/Container'
 
 function App() {
   const [score, setScore] = useState(0)
@@ -16,6 +19,8 @@ function App() {
 
   return (
     <div className="App">
+      <div className="appContainer">
+      <Container fluid="xs">
       <Routes>
         <Route path="/" element={<TaskList mods={{score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">
@@ -30,6 +35,9 @@ function App() {
           <Route path=":id" element={<ShowReward />} /> 
         </Route>
       </Routes>
+      <Footer />
+      </Container>
+      </div>
     </div>
   );
 }

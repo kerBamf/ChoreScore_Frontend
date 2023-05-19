@@ -1,6 +1,9 @@
 import { tasksLoader, taskLoader, deleteTask } from "../apiCalls"
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Stack from 'react-bootstrap/Stack'
 
 
 const TaskList = (props) => {
@@ -22,13 +25,13 @@ const TaskList = (props) => {
     function getList() {
         const taskArr = tasks.map((value, idx) => {
             return(
-                <div className="card" key={idx}>
-                    <div className="card-body">
+                <div className="bg-light border" key={idx}>
+                    <div>
                         <Link to={`/task/${value._id}`}>
-                            <h3 className="card-title">{value.name}</h3>
+                            <h3>{value.name}</h3>
                         </Link>
-                        <h6 className="card-subtitle">Value: {value.value}</h6>
-                        <button className="btn btn-secondary text-end" onClick={handleClick} value={value._id}>Completed</button>
+                        <h6>Value: {value.value}</h6>
+                        <Button className="btn completeButton" variant="secondary" onClick={handleClick} value={value._id}>Completed</Button>
                     </div>
                 </div>
             )
@@ -49,12 +52,14 @@ const TaskList = (props) => {
     }
 
     return(
-        <div className="container-md">
+        <div>
             <h3>Credits Available: {props.mods.score}</h3>
             <h3>Tasks Completed: {props.mods.tasksDone}</h3>
-            <Link to="/task/new"><button>New Task</button></Link>
-            {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
-            <Link to="/rewards"><button>Rewards</button></Link>
+            <Link to="/task/new"><Button variant="primary">New Task</Button></Link>
+            <Stack gap={2}>
+                {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
+            </Stack>
+            <Link to="/rewards"><Button variant="info">Rewards</Button></Link>
         </div>
     )
 }
