@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
 
 
@@ -52,13 +54,20 @@ const TaskList = (props) => {
     }
 
     return(
-        <div>
-            <Link to="/task/new"><Button variant="primary">New Task</Button></Link>
+        <Container className>
+            <Row >
+                <Col xs={{span: 2, offset: 8}}>
+                    <Link to="/task/new"><Button variant="primary">New Task</Button></Link>
+                </Col>
+                <Col xs={2}>
+                    <Link to="/rewards"><Button variant="info">Rewards</Button></Link>
+                </Col>
+            </Row>
             <Stack gap={2}>
                 {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
             </Stack>
-            <Link to="/rewards"><Button variant="info">Rewards</Button></Link>
-        </div>
+            
+        </Container>
     )
 }
 
