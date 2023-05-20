@@ -155,31 +155,10 @@ export const deleteReward = async (id) => {
 
 export const quotesLoader = async () => {
     try{    
-        let quotes = await fetch('http://localhost:4000/quotes')
-        quotes = await quotes.json()
-        let thisTime = await fetch('http://worldtimeapi.org/api/ip')
-        thisTime = await thisTime.json()
-    
-        if (quotes.timeSeeded.day_of_year === thisTime.day_of_year) {
-            return quotes.quotes
-        } else {
-            let newQuotes = await fetch('https://zenquotes.io/api/quotes/')
-            await newQuotes.json()
-            let newTimedQuotes = {
-                quotes: newQuotes,
-                timeSeeded: thisTime
-            }
-            newTimedQuotes = JSON.stringify(newTimedQuotes)
-            await fetch(`localhost:4000/quotes/${quotes._id}`, {
-                method: "PUT",
-                headers: {"Content-Type": "application/json"},
-                body: newTimedQuotes
-            })
-            console.log(newTimedQuotes)
-            return newQuotes.quotes
-
-        }
+        let quote = await fetch('http://localhost:4000/quotes')
+        quote = quote.json()
+        return quote
     } catch(err) {
-        console.group(err)
+        console.log(err)
     }
 }
