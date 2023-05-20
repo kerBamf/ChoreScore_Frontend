@@ -53,8 +53,6 @@ const TaskList = (props) => {
 
     return(
         <div>
-            <h3>Credits Available: {props.mods.score}</h3>
-            <h3>Tasks Completed: {props.mods.tasksDone}</h3>
             <Link to="/task/new"><Button variant="primary">New Task</Button></Link>
             <Stack gap={2}>
                 {tasks.length ? getList() : <h2>No Tasks Listed</h2>}

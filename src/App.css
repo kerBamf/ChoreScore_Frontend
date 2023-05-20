@@ -3,3 +3,18 @@
     max-width: 750px;
 }
 
+.quoteBox {
+    background-color: rgb(7, 0, 55);
+    color: white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.quote {
+    font-style: italic;
+    margin: 4px;
+}
+
+.quoteAuthor {
+    margin: 3px 3px 3px 35px;
+}

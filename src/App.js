@@ -11,6 +11,7 @@ import NewReward from './pages/newReward'
 import ShowReward from './pages/showReward'
 import EditReward from './pages/editReward';
 import Footer from './components/footer'
+import Header from './components/header'
 import Container from 'react-bootstrap/Container'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <div className="appContainer">
       <Container fluid="xs">
+        <Header mods={{score, tasksDone}}/>
       <Routes>
         <Route path="/" element={<TaskList mods={{score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">

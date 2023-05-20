@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { quotesLoader } from '../apiCalls'
+import Container from 'react-bootstrap/Container'
+
 
 const Footer = () => {
     const [quote, setQuote] = useState({})
@@ -9,14 +11,13 @@ const Footer = () => {
         try{
         rawQuote = await quotesLoader()
         setQuote(rawQuote)
-        console.log(quote)
         } catch(err) {
             console.log(err)
         } 
     }
 
     useEffect(() => {
-        const interval = setInterval(getQuote, 5000)
+        const interval = setInterval(getQuote, 60000)
         return () => {
             clearInterval(interval)
         }
@@ -25,10 +26,10 @@ const Footer = () => {
 
     if (quote != null) {
     return ( 
-        <>
-        <h2>{quote.quote}</h2>
-        {quote.author ? <h4>{quote.author}</h4> : <h6>Unknown</h6>}
-        </>
+        <Container className="quoteBox">
+            <p className="quote">"{quote.quote}"</p>
+            {quote.author ? <p className="quoteAuthor">-{quote.author}</p> : <p className="quoteAuthor justify-content-end">-Unknown</p>}
+        </Container>
     )
     } else {
         return (<p>Loading Quotes...</p>)
