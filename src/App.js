@@ -31,7 +31,7 @@ function App() {
         }
       }
 
-      const newUser = awaitFetch('http://localhost:400/auth/register',
+      const newUser = await Fetch('http://localhost:400/auth/register',
       configs)
 
       const parsedUser = await newUser.json()
