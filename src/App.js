@@ -13,6 +13,8 @@ import ShowReward from './pages/showReward'
 import EditReward from './pages/editReward';
 import Footer from './components/footer'
 import Header from './components/header'
+import RegisterUser from './pages/register';
+import LoginUser from './pages/login';
 import Container from 'react-bootstrap/Container'
 
 function App() {
@@ -21,68 +23,14 @@ function App() {
   const [score, setScore] = useState(0)
   const [tasksDone, setTasksDone] = useState(0)
 
-  const registerUser = async (data) => {
-    try {
-      const configs = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-
-      const newUser = await Fetch('http://localhost:400/auth/register',
-      configs)
-
-      const parsedUser = await newUser.json()
-      console.log(parsedUser)
-
-      setUserToken(parsedUser.token)
-      setCurrentUser(parsedUser.currentUser)
-      setIsAuthenticated(parsedUser.loggedIn)
-      return parsedUser
-    } catch(err) {
-      console.log(err)
-      clearUserToken();
-      setIsAuthenticated(false)
-  }
-}
-
-  const loginUser = async (data) => {
-    try {
-      const configs = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "applications/json"
-        }
-      }
-
-      const response = await fetch(
-        "http://localhost:4000/auth/login", configs
-      )
-
-      const user = await response.json()
-      console.log(user)
-
-      setUserToken(user.token)
-      setCurrentUser(user.currentUser)
-      setIsAuthenticated(user.loggedI)
-
-      return user
-    } catch(err) {
-      console.log(err)
-      clearUserToken()
-      setIsAuthenticated(false)
-    }
-  }
-
   return (
     <div className="App">
       <div className="appContainer">
       <Container fluid="xs">
-        <Header mods={{score, tasksDone, currentUser}}/>
+        <Header mods={{score, tasksDone, currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated}}/>
       <Routes>
+        <Route path="/auth/register" element={<RegisterUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
+        <Route path="/auth/login" element={<LoginUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
         <Route path="/" element={<TaskList mods={{score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">
           <Route path="new" element={<NewTask />} />

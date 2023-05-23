@@ -14,6 +14,7 @@ const TaskList = (props) => {
     async function getTasks() {
         try{
         let myTasks = await tasksLoader();
+        console.log(myTasks)
         setTasks(myTasks);
         } catch(err) {
             console.log(err)
