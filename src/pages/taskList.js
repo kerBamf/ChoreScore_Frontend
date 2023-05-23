@@ -23,9 +23,11 @@ const TaskList = (props) => {
 
     useEffect(() => {
         getTasks()
+        console.log(props.mods.currentUser)
     }, []);
 
     function getList() {
+
         const taskArr = tasks.map((value, idx) => {
             return(
                 <div className="bg-light border" key={idx}>

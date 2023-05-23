@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 import { logoutUser } from './authRoutes'
 import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router'
 
 function Header(props) {
     const score = props.mods.score
@@ -11,11 +12,18 @@ function Header(props) {
     const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
     const setIsAuthenticated = props.mods.setIsAuthenticated
+    const isAuthenticated = props.mods.isAuthenticated
+    const navigate = useNavigate()
 
     const handleClick = async () => {
+        if (isAuthenticated == true) {
         setCurrentUser(null)
         setIsAuthenticated(false)
         logoutUser()
+        navigate('/auth/login')
+        } else {
+            navigate('/auth/login')
+        }
 
     }
 
@@ -34,8 +42,8 @@ function Header(props) {
                     <Col sm={4}>
                         <h5>Tasks Completed: {tasksDone}</h5>
                     </Col>
-                    <Col>
-                        <Button onClick={handleClick}>Logout</Button>
+                    <Col> 
+                        {isAuthenticated == true ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
                     </Col>
                 </Row>
             </Container>

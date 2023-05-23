@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/auth/register" element={<RegisterUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
         <Route path="/auth/login" element={<LoginUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
-        <Route path="/" element={<TaskList mods={{score, setScore, tasksDone, setTasksDone}} />} />
+        <Route path="/" element={<TaskList mods={{currentUser, score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">
           <Route path="new" element={<NewTask />} />
           <Route path="edit/:id" element={<EditTask />} />
@@ -43,7 +43,7 @@ function App() {
           <Route path="edit/:id" element={<EditReward />} />
           <Route path=":id" element={<ShowReward />} /> 
         </Route>
-      </Routes>
+      </Routes> 
       <Footer />
       </Container>
       </div>
