@@ -1,4 +1,4 @@
-import { rewardsLoader, rewardLoader } from "../apiCalls";
+import { rewardsLoader } from "../apiCalls";
 import { useState, useEffect} from "react"
 import { Link } from 'react-router-dom'
 
@@ -50,16 +50,23 @@ const Rewards = (props) => {
         props.mods.setScore(score - e.target.value)
     }
 
-    return (
-        <>
-            <h3>Credits: {score}</h3>
-            <Link to='/rewards/new'>
-                <button>New Reward</button>
-            </Link>
-            {getList()}
-            <Link to="/"><h4>Home</h4></Link>
-        </>
-    )
+    if (rewards.length > 0) {
+        return (
+            <>
+                <h3>Credits: {score}</h3>
+                {getList()}
+                <Link to="/"><h4>Home</h4></Link>
+            </>
+        ) } else {
+            return (
+                <>
+                <h4>No Rewards Listed</h4>
+                <Link to="/rewards/new">
+                    <button>New Reward</button>
+                </Link>
+                </>
+            )
+        }
 }
 
 export default Rewards

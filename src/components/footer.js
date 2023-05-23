@@ -17,7 +17,7 @@ const Footer = () => {
     }
 
     useEffect(() => {
-        const interval = setInterval(getQuote, 60000)
+        const interval = setInterval(getQuote, 10000)
         return () => {
             clearInterval(interval)
         }

@@ -28,7 +28,7 @@ const LoginUser = (props) => {
         if (user) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
-            //navigate("/")
+            navigate("/")
         } else {
             errorMessage()
         }

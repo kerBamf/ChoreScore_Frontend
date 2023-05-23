@@ -19,6 +19,7 @@ export const tasksLoader = async () => {
         return tasks
     } catch (err) {
         console.log(err)
+        return []
     }
 }
 
@@ -35,6 +36,7 @@ export const taskLoader = async (id) => {
         return task
     } catch (err) {
         console.log(err)
+        return {}
     }
 }
 
@@ -131,6 +133,7 @@ export const rewardsLoader = async () => {
         return rewards
     } catch (err) {
         console.log(err)
+        return []
     }
 }
 
@@ -146,6 +149,7 @@ export const rewardLoader = async (id) => {
         reward = await reward.json()
         return reward
     } catch (err) {
+        return {}
         console.log(err)
     }
 }
