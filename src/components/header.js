@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Navbar from 'react-bootstrap/Navbar'
 import { logoutUser } from './authRoutes'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router'
@@ -43,7 +42,7 @@ function Header(props) {
                         <h5>Tasks Completed: {tasksDone}</h5>
                     </Col>
                     <Col> 
-                        {isAuthenticated == true ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
+                        {isAuthenticated ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
                     </Col>
                 </Row>
             </Container>

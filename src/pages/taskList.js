@@ -6,10 +6,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
+import { Route, Routes } from 'react-router-dom'
+import NewTask from "./newTask"
 
 
 const TaskList = (props) => {
     const [tasks, setTasks] = useState([])
+    const [newTab, setNewTab] = useState(false)
 
     async function getTasks() {
         try{
@@ -52,26 +55,41 @@ const TaskList = (props) => {
         let currentTasksDone = props.mods.tasksDone
         props.mods.setScore(currentScore + task.value)
         props.mods.setTasksDone(currentTasksDone + 1)
-        // await deleteTask(task._id)
-        // getTasks()
     }
 
+    function openNewTask() {
+        if(newTab) {
+            setNewTab(false)
+        } else {
+            setNewTab(true)
+        }
+    }
+    
+    if (props.mods.isAuthenticated == true) {
     return(
-        <Container className>
+        <Container>
             <Row >
                 <Col xs={{span: 2, offset: 8}}>
-                    <Link to="/task/new"><Button variant="primary">New Task</Button></Link>
+                    {/* <Link to="/task/new"><Button variant="primary">New Task</Button></Link> */}
+                    <Button variant="primary" onClick={openNewTask}>New Task</Button>
                 </Col>
                 <Col xs={2}>
                     <Link to="/rewards"><Button variant="info">Rewards</Button></Link>
                 </Col>
             </Row>
             <Stack gap={2}>
+                {newTab ? <NewTask mods={{setNewTab, getTasks}} /> : null}
                 {tasks.length ? getList() : <h2>No Tasks Listed</h2>}
             </Stack>
-            
         </Container>
     )
+    } else {
+        return (
+            <Container>
+                <h2>Please Login to Use App</h2>
+            </Container>
+        )
+    }
 }
 
 export default TaskList

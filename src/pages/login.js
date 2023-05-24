@@ -27,6 +27,7 @@ const LoginUser = (props) => {
 
         if (user) {
             setCurrentUser(user)
+            console.log(user)
             setIsAuthenticated(user.isLoggedIn)
             navigate("/")
         } else {

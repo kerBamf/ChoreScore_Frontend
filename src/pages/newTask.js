@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { postTask } from '../apiCalls'
 import { Link } from 'react-router-dom'
 
-const NewTask = () => {
+const NewTask = (props) => {
+    const setNewTab = props.mods.setNewTab
+    const getTasks = props.mods.getTasks
+
     const [taskForm, setTaskForm] = useState({
         name: "",
         duration: 0,
@@ -25,6 +28,7 @@ const NewTask = () => {
             e.target.reset();
             showSent()
             console.log(sentState)
+            getTasks()
         } catch(err) {
             console.log(err)
         }
@@ -37,6 +41,10 @@ const NewTask = () => {
             setSentState(false)
         }, 5000)
 
+    }
+
+    function handleClose() {
+        setNewTab()
     }
 
     return (
@@ -55,8 +63,9 @@ const NewTask = () => {
             </label>
             <button type='submit'>Send It</button>
         </form>
-        {sentState ? <h2>Sent!</h2> : null}
-        <Link to="/"><h4>Home</h4></Link>
+        {sentState ? <h4>Task Added</h4> : null}
+        {/* <Link to="/"><h4>Home</h4></Link> */}
+        <button onClick={handleClose}>Close</button>
         </>
     )
 }
