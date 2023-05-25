@@ -25,11 +25,10 @@ const RegisterUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newUser = await registerUser(input)
-
-        if (newUser) {
+        if (newUser.isLoggedIn == true) {
             setCurrentUser(newUser)
             setIsAuthenticated(newUser.isLoggedIn)
-            //navigate("/")
+            navigate("/")
         } else {
             errorMessage()
         }

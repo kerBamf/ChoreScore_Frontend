@@ -8,8 +8,6 @@ import { useState } from 'react'
 
 function Header(props) {
 
-    const score = props.mods.score
-    const tasksDone = props.mods.tasksDone
     const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
     const setIsAuthenticated = props.mods.setIsAuthenticated
@@ -26,7 +24,7 @@ function Header(props) {
 
     const handleClick = async () => {
         if (isAuthenticated == true) {
-        setCurrentUser({})
+        setCurrentUser(null)
         setIsAuthenticated(false)
         logoutUser()
         showLogout()
@@ -45,15 +43,15 @@ function Header(props) {
                 </Row>
                 <Row>
                     <Col sm={2} >
-                        {currentUser ? <h4>{currentUser.name}</h4> : null}
+                        {currentUser.user ? <h4>{currentUser.user.username}</h4> : null}
+                        {logoutText ? <Col><p>Logged Out!</p></Col> : null}
                     </Col>
                     <Col sm={4} className="justify-content-sm-center">
-                        <h5>Credits Available: {score}</h5>
+                        {currentUser.user ? <h5>Credits Available: {props.mods.curerntUser.user.credits}</h5> : null}
                     </Col>
                     <Col sm={4} className="justify-content-sm-center">
-                        <h5>Tasks Completed: {tasksDone}</h5>
+                        {currentUser.user ? <h5>Tasks Completed: {props.mods.currentUser.user.tasksDone}</h5> : null}
                     </Col>
-                    {logoutText ? <Col><p>Logged Out!</p></Col> : null}
                     <Col> 
                         {(isAuthenticated == true) ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
                     </Col>

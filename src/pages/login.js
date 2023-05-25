@@ -24,7 +24,7 @@ const LoginUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await loginUser(input)
-        if (user.isLoggedIn) {
+        if (user.isLoggedIn == true) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
             navigate("/")
