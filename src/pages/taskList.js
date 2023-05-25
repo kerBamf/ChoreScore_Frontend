@@ -1,4 +1,4 @@
-import { tasksLoader, taskLoader } from "../apiCalls"
+import { tasksLoader, taskLoader, userUpdate } from "../apiCalls"
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
@@ -13,6 +13,8 @@ import NewTask from "./newTask"
 const TaskList = (props) => {
     const [tasks, setTasks] = useState([])
     const [newTab, setNewTab] = useState(false)
+    const currentUser = props.mods.currentUser
+    const setCurrentUser = props.mods.setCurrentUser
 
     async function getTasks() {
         try{
@@ -26,7 +28,6 @@ const TaskList = (props) => {
 
     useEffect(() => {
         getTasks()
-        console.log(props.mods.currentUser)
     }, []);
 
     function getList() {
@@ -53,8 +54,26 @@ const TaskList = (props) => {
         console.log(task)
         let currentScore = props.mods.score
         let currentTasksDone = props.mods.tasksDone
-        props.mods.setScore(currentScore + task.value)
-        props.mods.setTasksDone(currentTasksDone + 1)
+        changeUserData(currentUser)
+        // props.mods.setScore(currentScore + task.value)
+        // props.mods.setTasksDone(currentTasksDone + 1)
+    }
+    
+    //Updates Current User state and uses data to make API update call 
+    function changeUserData(task) {
+        console.log(`Base state: ${currentUser.user.credits}`)
+        setCurrentUser({
+            ...currentUser,
+            user: {
+                ...currentUser.user,
+                credits: currentUser.user.credits + task.value,
+                tasksDone: currentUser.user.tasksDone + 1
+            }
+        })
+        setTimeout(() => {
+            console.log(`New State ${currentUser.user.credits}`)
+            userUpdate(currentUser)
+        }, 1000)
     }
 
     function openNewTask() {

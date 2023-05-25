@@ -19,7 +19,7 @@ import Container from 'react-bootstrap/Container'
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
-  const [isAuthenticated, setIsAuthenticated] = useState({})
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [score, setScore] = useState(0)
   const [tasksDone, setTasksDone] = useState(0)
 
@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/auth/register" element={<RegisterUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
         <Route path="/auth/login" element={<LoginUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
-        <Route path="/" element={<TaskList mods={{isAuthenticated, currentUser, score, setScore, tasksDone, setTasksDone}} />} />
+        <Route path="/" element={<TaskList mods={{isAuthenticated, currentUser, setCurrentUser, score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">
           <Route path="new" element={<NewTask />} />
           <Route path="edit/:id" element={<EditTask />} />

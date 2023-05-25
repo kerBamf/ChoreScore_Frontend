@@ -24,10 +24,8 @@ const LoginUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await loginUser(input)
-
-        if (user) {
+        if (user.isLoggedIn) {
             setCurrentUser(user)
-            console.log(user)
             setIsAuthenticated(user.isLoggedIn)
             navigate("/")
         } else {
@@ -51,9 +49,9 @@ const LoginUser = (props) => {
                 <Form.Label>Password: </Form.Label>
                 <Form.Control type="text" onChange={handleChange} placeholder="Make it a good'un" name="password" />
             </Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="primary" type="submit">Login</Button>
         </Form>
-        {!errorState ? <p>There was an error. Please try again</p> : null}
+        {(errorState == true) ? <p>There was an error. Please try again</p> : null}
         </>
     )
 }

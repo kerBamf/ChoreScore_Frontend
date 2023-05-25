@@ -208,3 +208,24 @@ export const quotesLoader = async () => {
         console.log(err)
     }
 }
+
+//User Score and Tasks Completed Updates
+
+export const userUpdate = async (data) =>  {
+    try{
+        let userData = data.user
+        let updateStatus = await fetch('http://localhost:4000/auth/update', {
+            method: "PUT",
+            body: JSON.stringify(userData),
+            headers: {
+                'Authorization': `bearer ${getUserToken()}`,
+                "Content-Type": "application/json"
+            }
+            }
+        )
+        updateStatus = updateStatus.json()
+        console.log(updateStatus)
+    } catch(err) {
+        console.log(err)
+    }
+}

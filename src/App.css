@@ -1,6 +1,18 @@
+body {
+    font-family: 'Overpass', sans-serif;
+}
+
 .appContainer {
     margin: 0 auto;
     max-width: 750px;
+}
+
+
+.appTitle {
+    text-align: center;
+    font-size: 90px;
+    font-weight: 700;
+    letter-spacing: 30px;
 }
 
 .quoteBox {
