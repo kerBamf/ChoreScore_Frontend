@@ -62,18 +62,17 @@ const TaskList = (props) => {
     //Updates Current User state and uses data to make API update call 
     function changeUserData(task) {
         console.log(`Base state: ${currentUser.user.credits}`)
-        setCurrentUser({
-            ...currentUser,
-            user: {
-                ...currentUser.user,
-                credits: currentUser.user.credits + task.value,
-                tasksDone: currentUser.user.tasksDone + 1
-            }
-        })
-        setTimeout(() => {
+        setCurrentUser(prev => {
+            const newUser = {...prev,
+                user: {
+                    ...prev.user,
+                    credits: prev.user.credits + task.value,
+                    tasksDone: prev.user.tasksDone + 1
+                }}
+                userUpdate(newUser)
+                return newUser
+            })
             console.log(`New State ${currentUser.user.credits}`)
-            userUpdate(currentUser)
-        }, 1000)
     }
 
     function openNewTask() {

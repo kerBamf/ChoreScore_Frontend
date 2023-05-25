@@ -39,7 +39,7 @@ export const taskLoader = async (id) => {
         return {}
     }
 }
-
+//Value Generator
 export function valueGenerator(dif, dur) {
     const durationMod = Math.floor(dur / 15)
     let difficultyMod = () => {
@@ -202,7 +202,7 @@ export const deleteReward = async (id) => {
 export const quotesLoader = async () => {
     try {
         let quote = await fetch('http://localhost:4000/quotes')
-        quote = quote.json()
+        quote = await quote.json()
         return quote
     } catch (err) {
         console.log(err)
@@ -214,6 +214,7 @@ export const quotesLoader = async () => {
 export const userUpdate = async (data) =>  {
     try{
         let userData = data.user
+            console.log(userData)
         let updateStatus = await fetch('http://localhost:4000/auth/update', {
             method: "PUT",
             body: JSON.stringify(userData),
@@ -223,7 +224,8 @@ export const userUpdate = async (data) =>  {
             }
             }
         )
-        updateStatus = updateStatus.json()
+        updateStatus = await updateStatus.json()
+        console.log(data)
         console.log(updateStatus)
     } catch(err) {
         console.log(err)
