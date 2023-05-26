@@ -52,28 +52,20 @@ const TaskList = (props) => {
         e.preventDefault();
         const task = await taskLoader(e.target.value)
         console.log(task)
-        let currentScore = props.mods.score
-        let currentTasksDone = props.mods.tasksDone
-        changeUserData(currentUser)
+        const newUser = await userUpdate(currentUser, task)
+        console.log(newUser)
+        setCurrentUser({
+            ...currentUser,
+            user : newUser
+        })
+        // let currentScore = props.mods.score
+        // let currentTasksDone = props.mods.tasksDone
         // props.mods.setScore(currentScore + task.value)
         // props.mods.setTasksDone(currentTasksDone + 1)
     }
     
     //Updates Current User state and uses data to make API update call 
-    function changeUserData(task) {
-        console.log(`Base state: ${currentUser.user.credits}`)
-        setCurrentUser(prev => {
-            const newUser = {...prev,
-                user: {
-                    ...prev.user,
-                    credits: prev.user.credits + task.value,
-                    tasksDone: prev.user.tasksDone + 1
-                }}
-                userUpdate(newUser)
-                return newUser
-            })
-            console.log(`New State ${currentUser.user.credits}`)
-    }
+    
 
     function openNewTask() {
         if(newTab) {

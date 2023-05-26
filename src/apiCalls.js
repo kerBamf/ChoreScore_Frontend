@@ -211,9 +211,11 @@ export const quotesLoader = async () => {
 
 //User Score and Tasks Completed Updates
 
-export const userUpdate = async (data) =>  {
+export const userUpdate = async (user, task) =>  {
     try{
-        let userData = data.user
+        let userData = user.user
+            userData.credits = userData.credits + task.value
+            userData.tasksDone = userData.tasksDone + 1
             console.log(userData)
         let updateStatus = await fetch('http://localhost:4000/auth/update', {
             method: "PUT",
@@ -225,8 +227,9 @@ export const userUpdate = async (data) =>  {
             }
         )
         updateStatus = await updateStatus.json()
-        console.log(data)
+        console.log(userData)
         console.log(updateStatus)
+        return userData
     } catch(err) {
         console.log(err)
     }
