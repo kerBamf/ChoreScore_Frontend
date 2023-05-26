@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { quotesLoader } from '../apiCalls'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 const Footer = () => {
@@ -24,11 +26,19 @@ const Footer = () => {
     }, [])
     
 
-    if (quote != null) {
+    if (quote) {
     return ( 
         <Container className="quoteBox">
-            <p className="quote">"{quote.quote}"</p>
-            {quote.author ? <p className="quoteAuthor">-{quote.author}</p> : <p className="quoteAuthor justify-content-end">-Unknown</p>}
+            <Row>
+                <Col>
+                    <p className="quote">"{quote.quote}"</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={{offset: 7}}>
+                    {quote.author ? <p className="quoteAuthor">-{quote.author}</p> : <p className="quoteAuthor justify-content-end">-Unknown</p>}
+                </Col>
+            </Row>
         </Container>
     )
     } else {

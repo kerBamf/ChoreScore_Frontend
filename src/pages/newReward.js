@@ -3,7 +3,10 @@ import { useState } from "react"
 import { Link } from 'react-router-dom'
 
 
-const NewReward = () => {
+const NewReward = (props) => {
+    const setNewTab = props.mods.setNewTab
+    const getRewards = props.mods.getRewards
+
     const [rewardForm, setRewardForm] = useState({
         name: "",
         cost: 0,
@@ -23,6 +26,7 @@ const NewReward = () => {
             await postReward(rewardForm)
             e.target.reset();
             showSent()
+            getRewards()
         } catch(err) {
             console.log(err)
         }
@@ -36,6 +40,10 @@ const NewReward = () => {
         }, 5000)
     }
 
+    function handleClose() {
+        setNewTab()
+    }
+
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -45,7 +53,7 @@ const NewReward = () => {
             <button type="submit">Send It</button>
         </form>
         {sentState ? <h2>Sent!</h2> : null}
-        <Link to="/rewards"><h4>Home</h4></Link>
+        <button onClick={handleClose}>Close</button>
         </>
     )
 

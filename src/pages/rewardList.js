@@ -1,11 +1,22 @@
-import { rewardsLoader } from "../apiCalls";
+import { rewardLoader, rewardsLoader, userUpdate } from "../apiCalls";
 import { useState, useEffect} from "react"
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
+import NewReward from './newReward'
+
 
 const Rewards = (props) => {
     const [rewards, setRewards] = useState([])
+    const [newTab, setNewTab] = useState(false)
     const score = props.mods.score
-    console.log(score)
+    const setScore = props.mods.setScore
+    const currentUser = props.mods.currentUser
+    const setCurrentUser = props.mods.setCurrentUser
+
 
     async function getRewards() {
         try{
@@ -22,14 +33,14 @@ const Rewards = (props) => {
 
     function getList() {
         const rewardArr = rewards.map((value, idx) => {
-            if(value.cost <= props.mods.score){
+            if(value.cost <= score){
             return(
                 <div key={idx}>
                     <Link to={`/rewards/${value._id}`}>
                         <h3>{value.name}</h3>
                     </Link>
                     <h4>Cost: {value.cost}</h4>
-                    <button onClick={handleClick} value={value.cost}>Purchase</button>
+                    <Button className="btn completeButton" variant="secondary" onClick={handleClick} value={value._id}>Purchase</Button>
                 </div>
             )} else {
                 return (
@@ -46,27 +57,63 @@ const Rewards = (props) => {
         return rewardArr
     }
 
-    function handleClick(e) {
-        props.mods.setScore(score - e.target.value)
+    async function handleClick(e) {
+        e.preventDefault()
+        const reward = await rewardLoader(e.target.value)
+        console.log(reward)
+        const updateData = userObjectUpdate(currentUser, reward)
+        const newUser = await userUpdate(updateData)
+        console.log(newUser)
+        setScore(newUser.credits)
+        setCurrentUser({
+            ...currentUser,
+            user: newUser
+        })
     }
 
-    if (rewards.length > 0) {
-        return (
-            <>
-                <h3>Credits: {score}</h3>
-                {getList()}
-                <Link to="/"><h4>Home</h4></Link>
-            </>
-        ) } else {
-            return (
-                <>
-                <h4>No Rewards Listed</h4>
-                <Link to="/rewards/new">
-                    <button>New Reward</button>
-                </Link>
-                </>
-            )
+    //Function creating new user object for update
+
+    function userObjectUpdate(user, reward) {
+        let userData = user.user
+        userData.credits = userData.credits - reward.cost
+        console.log(userData)
+        return userData
+    }
+
+    //Controls state showing new reward subwindow
+    function openNewReward() {
+        if(newTab) {
+            setNewTab(false)
+        } else {
+            setNewTab(true)
         }
+    }
+
+    if (props.mods.isAuthenticated == true) {
+        return (
+            <Container>
+            <Row >
+                <Col xs={{span: 3, offset: 7}}>
+                    {/* <Link to="/task/new"><Button variant="primary">New Task</Button></Link> */}
+                    <Button variant="primary" onClick={openNewReward}>New Reward</Button>
+                </Col>
+                <Col xs={2}>
+                    <Link to="/"><Button variant="info">Tasks</Button></Link>
+                </Col>
+            </Row>
+            <Stack gap={2}>
+                {newTab ? <NewReward mods={{setNewTab, getRewards}} /> : null}
+                {rewards.length ? getList() : <h2>No Rewards Listed</h2>}
+            </Stack>
+        </Container>
+    )
+    } else {
+        return (
+            <Container>
+                <h2>Please Login to Use App</h2>
+            </Container>
+        )
+    }
 }
 
 export default Rewards

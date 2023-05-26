@@ -209,15 +209,11 @@ export const quotesLoader = async () => {
 
 //User Score and Tasks Completed Updates
 
-export const userUpdate = async (user, task) =>  {
+export const userUpdate = async (userObject) =>  {
     try{
-        let userData = user.user
-            userData.credits = userData.credits + task.value
-            userData.tasksDone = userData.tasksDone + 1
-            console.log(userData)
         let updateStatus = await fetch('http://localhost:4000/auth/update', {
             method: "PUT",
-            body: JSON.stringify(userData),
+            body: JSON.stringify(userObject),
             headers: {
                 'Authorization': `bearer ${getUserToken()}`,
                 "Content-Type": "application/json"
@@ -225,9 +221,9 @@ export const userUpdate = async (user, task) =>  {
             }
         )
         updateStatus = await updateStatus.json()
-        console.log(userData)
+        console.log(userObject)
         console.log(updateStatus)
-        return userData
+        return userObject
     } catch(err) {
         console.log(err)
     }

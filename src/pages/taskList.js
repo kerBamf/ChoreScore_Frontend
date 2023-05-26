@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
-import { Route, Routes } from 'react-router-dom'
 import NewTask from "./newTask"
 
 
@@ -53,7 +52,8 @@ const TaskList = (props) => {
         e.preventDefault();
         const task = await taskLoader(e.target.value)
         console.log(task)
-        const newUser = await userUpdate(currentUser, task)
+        const updateData = userObjectUpdate(currentUser, task)
+        const newUser = await userUpdate(updateData)
         console.log(newUser)
         setScore(newUser.credits)
         setTasksDone(newUser.tasksDone)
@@ -61,15 +61,20 @@ const TaskList = (props) => {
             ...currentUser,
             user : newUser
         })
-        // let currentScore = props.mods.score
-        // let currentTasksDone = props.mods.tasksDone
-        // props.mods.setScore(currentScore + task.value)
-        // props.mods.setTasksDone(currentTasksDone + 1)
+    }
+
+    //Function Creating new user object for update
+
+    function userObjectUpdate(user, task) {
+        let userData = user.user
+        userData.credits = userData.credits + task.value
+        userData.tasksDone = userData.tasksDone + 1
+        console.log(userData)
+        return userData
     }
     
-    //Updates Current User state and uses data to make API update call 
     
-
+    //Controls state showing new task window
     function openNewTask() {
         if(newTab) {
             setNewTab(false)
