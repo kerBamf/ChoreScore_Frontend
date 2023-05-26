@@ -39,8 +39,8 @@ export const registerUser = async (data) => {
       const user = await response.json()
       setUserToken(user.token)
       console.log(user)
-
       return user
+      
     } catch(err) {
       console.log(err)
       clearUserToken()

@@ -10,6 +10,9 @@ const RegisterUser = (props) => {
     const setCurrentUser = props.mods.setCurrentUser
     const isAuthenticated = props.mods.isAuthenticated
     const setIsAuthenticated = props.mods.setIsAuthenticated
+    const setScore = props.mods.setScore
+    const setTasksDone = props.mods.setTasksDone
+    const setUsername = props.mods.setUsername
     const initialState = { username: "", password: ""}
     const navigate = useNavigate()
     const [input, setInput] = useState(initialState)
@@ -24,10 +27,14 @@ const RegisterUser = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const newUser = await registerUser(input)
-        if (newUser.isLoggedIn == true) {
-            setCurrentUser(newUser)
-            setIsAuthenticated(newUser.isLoggedIn)
+        const user = await registerUser(input)
+        console.log(user)
+        if (user.isLoggedIn) {
+            setCurrentUser(user)
+            setIsAuthenticated(user.isLoggedIn)
+            setScore(user.user.credits)
+            setTasksDone(user.user.tasksDone)
+            setUsername(user.user.username)
             navigate("/")
         } else {
             errorMessage()
@@ -50,9 +57,9 @@ const RegisterUser = (props) => {
                 <Form.Label>Password: </Form.Label>
                 <Form.Control type="text" onChange={handleChange} placeholder="Make it a good'un" name="password" />
             </Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="primary" type="submit">Sign Up!</Button>
         </Form>
-        {!errorState ? <p>There was an error. Please try again</p> : null}
+        {errorState ? <p>There was an error. Please try again</p> : null}
         </>
     )
 }

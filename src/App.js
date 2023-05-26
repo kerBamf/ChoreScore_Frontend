@@ -22,15 +22,16 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [score, setScore] = useState(0)
   const [tasksDone, setTasksDone] = useState(0)
+  const [username, setUsername] = useState("")
 
   return (
     <div className="App">
       <div className="appContainer">
       <Container fluid="xs">
-        <Header mods={{score, tasksDone, currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated}}/>
+        <Header mods={{score, setScore, tasksDone, setTasksDone, currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated, username, setUsername}}/>
       <Routes>
-        <Route path="/auth/register" element={<RegisterUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
-        <Route path="/auth/login" element={<LoginUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated }} />} />
+        <Route path="/auth/register" element={<RegisterUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated, score, setScore, tasksDone, setTasksDone, username, setUsername}} />} />
+        <Route path="/auth/login" element={<LoginUser mods={{currentUser, setCurrentUser, isAuthenticated, setIsAuthenticated, score, setScore, tasksDone, setTasksDone, username, setUsername}} />} />
         <Route path="/" element={<TaskList mods={{isAuthenticated, currentUser, setCurrentUser, score, setScore, tasksDone, setTasksDone}} />} />
         <Route path="/task">
           <Route path="new" element={<NewTask />} />

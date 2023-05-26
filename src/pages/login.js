@@ -3,12 +3,19 @@ import { useNavigate } from "react-router";
 import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 const LoginUser = (props) => {
     const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
     const isAuthenticated = props.mods.isAuthenticated
     const setIsAuthenticated = props.mods.setIsAuthenticated
+    const setScore = props.mods.setScore
+    const setTasksDone = props.mods.setTasksDone
+    const setUsername = props.mods.setUsername
     const initialState = { username: "", password: ""}
     const navigate = useNavigate()
     const [input, setInput] = useState(initialState)
@@ -24,9 +31,13 @@ const LoginUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await loginUser(input)
-        if (user.isLoggedIn == true) {
+        console.log(user)
+        if (user.isLoggedIn) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
+            setScore(user.user.credits)
+            setTasksDone(user.user.tasksDone)
+            setUsername(user.user.username)
             navigate("/")
         } else {
             errorMessage()
@@ -39,8 +50,10 @@ const LoginUser = (props) => {
     }
 
     return (
-        <>
+        <Container>
+        
         <Form onSubmit={handleSubmit}>
+            <Row>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control type="text" onChange={handleChange} placeholder="email@email.com" name="username" />
@@ -49,10 +62,18 @@ const LoginUser = (props) => {
                 <Form.Label>Password: </Form.Label>
                 <Form.Control type="text" onChange={handleChange} placeholder="Make it a good'un" name="password" />
             </Form.Group>
-            <Button variant="primary" type="submit">Login</Button>
+            </Row>
+            <Row>
+                <Col sm={2} className="justify-content-center">
+                    <Button variant="primary" type="submit">Login</Button>
+                </Col>
+                <Col sm={2} className="justify-content-center">
+                    <Link to="/auth/register"><Button variant="secondary">Sign Up</Button></Link>
+                </Col>
+            </Row>    
         </Form>
         {(errorState == true) ? <p>There was an error. Please try again</p> : null}
-        </>
+        </Container>
     )
 }
 

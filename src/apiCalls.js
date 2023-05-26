@@ -13,9 +13,7 @@ export const tasksLoader = async () => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(tasks)
         tasks = await tasks.json()
-        console.log(tasks)
         return tasks
     } catch (err) {
         console.log(err)

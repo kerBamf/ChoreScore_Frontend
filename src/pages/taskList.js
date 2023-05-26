@@ -15,11 +15,12 @@ const TaskList = (props) => {
     const [newTab, setNewTab] = useState(false)
     const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
+    const setScore = props.mods.setScore
+    const setTasksDone = props.mods.setTasksDone
 
     async function getTasks() {
         try{
         let myTasks = await tasksLoader();
-        console.log(myTasks)
         setTasks(myTasks);
         } catch(err) {
             console.log(err)
@@ -54,6 +55,8 @@ const TaskList = (props) => {
         console.log(task)
         const newUser = await userUpdate(currentUser, task)
         console.log(newUser)
+        setScore(newUser.credits)
+        setTasksDone(newUser.tasksDone)
         setCurrentUser({
             ...currentUser,
             user : newUser
