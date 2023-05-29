@@ -1,6 +1,7 @@
 import { getUserToken } from "./utils/authToken"
 
-const URL = "http://localhost:4000"
+//const URL = "http://localhost:4000"
+const URL = "https://joyern.onrender.com/"
 
 
 //Task Calls
@@ -199,7 +200,7 @@ export const deleteReward = async (id) => {
 
 export const quotesLoader = async () => {
     try {
-        let quote = await fetch('http://localhost:4000/quotes')
+        let quote = await fetch(URL + '/quotes')
         quote = await quote.json()
         return quote
     } catch (err) {
@@ -211,7 +212,7 @@ export const quotesLoader = async () => {
 
 export const userUpdate = async (userObject) =>  {
     try{
-        let updateStatus = await fetch('http://localhost:4000/auth/update', {
+        let updateStatus = await fetch(URL + '/auth/update', {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {

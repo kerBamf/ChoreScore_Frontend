@@ -1,6 +1,9 @@
 import { setUserToken, clearUserToken } from '../utils/authToken'
 
 export const registerUser = async (data) => {
+  //const URL = "http://localhost:4000"
+  const URL = "https://joyern.onrender.com/"
+
     try {
       const configs = {
         method: "POST",
@@ -10,7 +13,7 @@ export const registerUser = async (data) => {
         }
       }
 
-      const newUser = await fetch('http://localhost:4000/auth/register', configs)
+      const newUser = await fetch(URL + '/auth/register', configs)
       console.log(`New user: ${newUser}`)
 
       const parsedUser = await newUser.json()
@@ -25,6 +28,8 @@ export const registerUser = async (data) => {
 }
 
  export const loginUser = async (data) => {
+  //const URL = "http://localhost:4000"
+  const URL = "https://joyern.onrender.com/"
     try {
       const configs = {
         method: "POST",
@@ -34,7 +39,7 @@ export const registerUser = async (data) => {
         }
       }
       console.log(configs)
-      const response = await fetch('http://localhost:4000/auth/login', configs)
+      const response = await fetch(URL + '/auth/login', configs)
 
       const user = await response.json()
       setUserToken(user.token)
@@ -48,8 +53,10 @@ export const registerUser = async (data) => {
   }
 
   export const logoutUser = async (data) => {
+    //const URL = "http://localhost:4000"
+    const URL = "https://joyern.onrender.com/"
     try{
-        let response = await fetch('http://localhost:4000/auth/logout')
+        let response = await fetch(URL + '/auth/logout')
         response = response.json()
         clearUserToken()
         return response.message
