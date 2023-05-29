@@ -1,7 +1,7 @@
 import { getUserToken } from "./utils/authToken"
 
 //const URL = "http://localhost:4000"
-const URL = "https://joyern.onrender.com/"
+const URL = "https://joyern.onrender.com"
 
 
 //Task Calls
