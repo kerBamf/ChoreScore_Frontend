@@ -35,7 +35,7 @@ const Rewards = (props) => {
         const rewardArr = rewards.map((value, idx) => {
             if(value.cost <= score){
             return(
-                <div key={idx}>
+                <div className="bg-light border taskItem" key={idx}>
                     <Link to={`/rewards/${value._id}`}>
                         <h3>{value.name}</h3>
                     </Link>
@@ -44,7 +44,7 @@ const Rewards = (props) => {
                 </div>
             )} else {
                 return (
-                    <div key={idx}>
+                    <div className="bg-light border taskItem" key={idx}>
                         <Link to={`/rewards/${value._id}`}>
                             <h3>{value.name}</h3>
                         </Link>
@@ -92,9 +92,11 @@ const Rewards = (props) => {
     if (props.mods.isAuthenticated == true) {
         return (
             <Container>
-            <Row >
-                <Col xs={{span: 3, offset: 7}}>
-                    {/* <Link to="/task/new"><Button variant="primary">New Task</Button></Link> */}
+            <Row className="taskRewardButtons align-items-center">
+            <Col xs={2} className="text-align-bottom">
+                    <h2 className="align-bottom"><u>Rewards</u></h2>
+                </Col>
+                <Col xs={{span: 3, offset: 5}}>
                     <Button variant="primary" onClick={openNewReward}>New Reward</Button>
                 </Col>
                 <Col xs={2}>

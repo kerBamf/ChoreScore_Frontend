@@ -52,47 +52,6 @@ function EditTask() {
 
     }
 
-    // function optionPreSelect(dif) {
-    //     if (dif === 1) {
-    //         return (
-    //             <>
-    //             <option value="1" selected>1</option>
-    //             <option value="2">2</option>
-    //             <option value="3">3</option>
-    //             <option value="4">4</option>
-    //             </>
-    //         )
-    //     } else if (dif === 2) {
-    //         return (
-    //             <>
-    //             <option value="1">1</option>
-    //             <option value="2" selected>2</option>
-    //             <option value="3">3</option>
-    //             <option value="4">4</option>
-    //             </>
-    //         )
-    //     } else if (dif === 3) {
-    //         return (
-    //             <>
-    //             <option value="1">1</option>
-    //             <option value="2">2</option>
-    //             <option value="3" selected>3</option>
-    //             <option value="4">4</option>
-    //             </>
-    //         )
-    //     } else if (dif === 4) {
-    //         return (
-    //             <>
-    //             <option value="1">1</option>
-    //             <option value="2">2</option>
-    //             <option value="3">3</option>
-    //             <option value="4" selected>4</option>
-    //             </>
-    //         )
-    //     }
-        
-    // }
-
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -105,7 +64,6 @@ function EditTask() {
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    {/* {optionPreSelect(task.difficulty)} */}
                 </select>
             </label>
             <button type='submit'>Send It</button>

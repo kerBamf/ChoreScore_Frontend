@@ -1,6 +1,10 @@
 import { postReward } from "../apiCalls";
 import { useState } from "react"
 import { Link } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 const NewReward = (props) => {
@@ -45,16 +49,32 @@ const NewReward = (props) => {
     }
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <label>Name: <input type='text' name="name" onChange={handleChange}></input></label>
-            <label>Cost: <input type='number' name="cost" onChange={handleChange}></input></label>
-            <label>Description: <input type='text' name="description" onChange={handleChange}></input></label>
-            <button type="submit">Send It</button>
-        </form>
-        {sentState ? <h2>Sent!</h2> : null}
-        <button onClick={handleClose}>Close</button>
-        </>
+
+        <div className="newItemForm">
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="sm-2" controlId="newRewardName">
+                <Form.Label>Name: </Form.Label>
+                <Form.Control type='text' name="name" onChange={handleChange}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newRewardCost">
+                <Form.Label>Cost: </Form.Label>
+                <Form.Control type='number' name="cost" onChange={handleChange}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newRewardDescription">
+                <Form.Label>Description: </Form.Label>
+                <Form.Control type='text' name="description" onChange={handleChange}></Form.Control>
+            </Form.Group>
+        {sentState ? <h5>Reward Added!</h5> : null}
+        <Row className="inputButtonRow">
+            <Col sm={2}>
+                <Button variant="primary" type='submit'>Create</Button>
+            </Col>
+            <Col sm={2}>
+                <Button variant="light" onClick={handleClose}>Close</Button>
+            </Col>
+        </Row>
+        </Form>
+        </div>
     )
 
 }
