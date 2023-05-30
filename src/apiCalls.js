@@ -45,11 +45,11 @@ export function valueGenerator(dif, dur) {
         if (dif === 1) {
             return 1
         } else if (dif === 2) {
-            return 1.25
+            return 1.37
         } else if (dif === 3) {
-            return 1.5
+            return 1.7
         } else {
-            return 1.75
+            return 2
         }
     }
     return Math.floor(durationMod * difficultyMod()) + 1

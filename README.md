@@ -1,70 +1,14 @@
-# Getting Started with Create React App
+# Project 3: JOYERN
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+JOYERN is a full MERN-stack app designed to gamify chores and other tasks. When a user creates a task, they define an estimated duration (in minutes) and choose a relative difficulty from 1-4. Based on those factors, a value is assigned to the task which the user can see once the task is created. Once a user clicks "Completed," the task is deleted from the task list and the value of the task is added to the number of credits the user has gained. 
+A "task completed" counter also shows how many total tasks the user has completed. By clicking on the name of the task, the user can choose to either edit or delete any given task from their list. Task value is reevaluated after any changes are made.
 
-## Available Scripts
+When clicking on the "Rewards" button, all previously defined rewards are listed. When creating a new reward, the user defines the cost as they choose. Once created, a reward appears with a "Purchase" button which detracts the cost from the user's total credits when clicked. Should a reward cost more credits than the user has available, the "Purchase" button disappears, and in its place is a prompt indicating that the user does not have enough points. Just as with the tasks, rewards can be edited or deleted by clicking on the name of the reward.
 
-In the project directory, you can run:
+In order to use the app, the user needs to sign in or create a new account. JOYERN uses authentication/authorization to keep track of an individual user's tasks, rewards, credits, and number of tasks completed. Should the user navigate to the home page without having signed in, all main controls disappear and the user is prompted to sign-in.
 
-### `npm start`
+## Tech and Build Approach
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+As previously stated, JOYERN is a MERN app. React-Bootstrap is utilized for most of the styling with custom CSS as needed, and token-based auth is utilized to facilitate user login.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The heart of the app is the task and reward list. Each are dynamically loaded as they are created and are tied to a user account via Mongo user-ID referencing when sending requests to the back-end. I wanted each task and reward to be self-contained, meaning most of the functionality for each would reside within each task as it appears; this would mean less navigation on the part of the user and a more concise interface.
