@@ -14,10 +14,10 @@ export const registerUser = async (data) => {
       }
 
       const newUser = await fetch(URL + '/auth/register', configs)
-      console.log(`New user: ${newUser}`)
+      
 
       const parsedUser = await newUser.json()
-      console.log(parsedUser)
+      
 
       setUserToken(parsedUser.token)
       return parsedUser
@@ -28,8 +28,8 @@ export const registerUser = async (data) => {
 }
 
  export const loginUser = async (data) => {
-  //const URL = "http://localhost:4000"
-  const URL = "https://joyern.onrender.com"
+  const URL = "http://localhost:4000"
+  //const URL = "https://joyern.onrender.com"
     try {
       const configs = {
         method: "POST",
@@ -38,12 +38,10 @@ export const registerUser = async (data) => {
           "Content-Type": "application/json"
         }
       }
-      console.log(configs)
       const response = await fetch(URL + '/auth/login', configs)
 
       const user = await response.json()
       setUserToken(user.token)
-      console.log(user)
       return user
       
     } catch(err) {
@@ -53,8 +51,8 @@ export const registerUser = async (data) => {
   }
 
   export const logoutUser = async (data) => {
-    //const URL = "http://localhost:4000"
-    const URL = "https://joyern.onrender.com"
+    const URL = "http://localhost:4000"
+    // const URL = "https://joyern.onrender.com"
     try{
         let response = await fetch(URL + '/auth/logout')
         response = response.json()

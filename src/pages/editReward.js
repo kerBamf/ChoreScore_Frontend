@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import { rewardLoader, putReward } from '../apiCalls'
 import { useParams } from 'react-router'
 import { Link, useNavigate } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function EditReward() {
     const navigate = useNavigate()
@@ -31,13 +35,12 @@ function EditReward() {
     const handleSubmit= async (e) => {
         try {
             e.preventDefault()
-            console.log(reward)
             await putReward(reward)
             showSent()
             getReward()
             setTimeout(function() {
                 navigate(`/rewards/${id}`)
-            }, 4000)
+            }, 1500)
         } catch(err) {
             console.log(err)
         }
@@ -52,16 +55,33 @@ function EditReward() {
     }
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <label>Name: <input type="text" name="name" placeholder={reward.name} onChange={handleChange}></input></label>
-            <label>Cost: <input type="number" name="cost" placeholder={reward.cost} onChange={handleChange}></input></label>
-            <label>Description: <input type="text" name="description" placeholder={reward.description} onChange={handleChange}></input></label>
-            <button type='submit'>Send It</button>
-        </form>
-        {sentState ? <h2>Updated! Rerouting to rewards page...</h2> : null}
-        <Link to="/rewards"><h4>Back to Rewards List</h4></Link>
-        </>
+
+        <div className="newItemForm">
+        <h2>Task Edit</h2>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="sm-2" controlId="newTaskName">
+                <Form.Label>Name: </Form.Label>
+                <Form.Control type='text' name="name" onChange={handleChange} placeholder={reward.name}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newTaskDuration">
+                <Form.Label>Cost: </Form.Label>
+                <Form.Control type='number' name="cost" onChange={handleChange} placeholder={reward.cost}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newTaskInfo">
+                <Form.Label>Description: </Form.Label>
+                <Form.Control type='text' name="description" onChange={handleChange} placeholder={reward.description}></Form.Control>
+            </Form.Group>
+        {sentState ? <h2>Updated! Rerouting to show page...</h2> : null}
+        <Row className="inputButtonRow">
+            <Col sm={2}>
+                <Button variant="primary" type='submit'>Update</Button>
+            </Col>
+            <Col>
+            <Link to={`/rewards/${id}`}><Button variant='secondary'>Cancel</Button></Link>
+            </Col>
+        </Row>
+        </Form>
+        </div>
     )
 }
 

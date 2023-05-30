@@ -45,11 +45,11 @@ export function valueGenerator(dif, dur) {
         if (dif === 1) {
             return 1
         } else if (dif === 2) {
-            return 1.25
+            return 1.37
         } else if (dif === 3) {
-            return 1.5
+            return 1.7
         } else {
-            return 1.75
+            return 2
         }
     }
     return Math.floor(durationMod * difficultyMod()) + 1
@@ -82,7 +82,6 @@ export const postTask = async (object) => {
 
 export const putTask = async (object) => {
     try {
-        console.log(object._id)
         let newObject = {
             _id: object._id,
             name: object.name,
@@ -148,8 +147,8 @@ export const rewardLoader = async (id) => {
         reward = await reward.json()
         return reward
     } catch (err) {
-        return {}
         console.log(err)
+        return {}
     }
 }
 
@@ -212,7 +211,7 @@ export const quotesLoader = async () => {
 
 export const userUpdate = async (userObject) =>  {
     try{
-        let updateStatus = await fetch(URL + '/auth/update', {
+        await fetch(URL + '/auth/update', {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {
@@ -221,9 +220,6 @@ export const userUpdate = async (userObject) =>  {
             }
             }
         )
-        updateStatus = await updateStatus.json()
-        console.log(userObject)
-        console.log(updateStatus)
         return userObject
     } catch(err) {
         console.log(err)

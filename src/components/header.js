@@ -4,10 +4,10 @@ import Col from 'react-bootstrap/Col'
 import { logoutUser } from './authRoutes'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Header(props) {
-    const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
     const setIsAuthenticated = props.mods.setIsAuthenticated
     const isAuthenticated = props.mods.isAuthenticated
@@ -28,7 +28,7 @@ function Header(props) {
     }
 
     const handleClick = async () => {
-        if (isAuthenticated == true) {
+        if (isAuthenticated === true) {
         setCurrentUser({})
         setIsAuthenticated(false)
         setUsername("")
@@ -45,12 +45,16 @@ function Header(props) {
 
     return(
         
-            <Container>
-                <Row className="justify-content-sm-center">
-                    <Col><h1 className="appTitle">JOYERN</h1></Col>
+            <Container className="headerContainer">
+                <Row>
+                    <Col sm={{offset: 1}}><h1 className="appTitle">JOYERN</h1></Col>
+                    <Col sm="auto"> 
+                        <Link to='/'><Button variant='primary' className='headerNav'>Home</Button></Link>
+                        {(isAuthenticated === true) ? <Button onClick={handleClick} className='headerNav'>Logout</Button> : <Button onClick={handleClick} className='headerNav'>Login</Button>}
+                    </Col>
                 </Row>
                 <Row>
-                    <Col sm={2} >
+                    <Col sm={3} >
                         {username ? <h4 className="headerText">{username}</h4> : null}
                         {logoutText ? <Col><p>Logged Out!</p></Col> : null}
                     </Col>
@@ -59,9 +63,6 @@ function Header(props) {
                     </Col>
                     <Col sm={4} className="justify-content-sm-center">
                         <h5 className="headerText">Tasks Completed: {tasksDone}</h5>
-                    </Col>
-                    <Col> 
-                        {(isAuthenticated == true) ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
                     </Col>
                 </Row>
             </Container>

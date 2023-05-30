@@ -7,6 +7,9 @@ body {
     max-width: 750px;
 }
 
+.headerContainer {
+    margin-bottom: 40px;
+}
 
 .appTitle {
     text-align: center;
@@ -15,10 +18,33 @@ body {
     letter-spacing: 30px;
 }
 
+.headerNav {
+    display: block;
+    margin: 0 0 5px 0;
+}
 
 .headerText{
     text-align: center;
-    vertical-align: middle;
+}
+
+.taskRewardButtons {
+    text-align: center;
+}
+
+.taskItem {
+    background-color: rgb(218, 229, 236);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.newItemForm {
+    background-color: rgb(216, 226, 232);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.inputButtonRow {
+    margin: 6px;
 }
 
 .quoteBox {

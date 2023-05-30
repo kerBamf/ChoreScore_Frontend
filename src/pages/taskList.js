@@ -1,4 +1,4 @@
-import { tasksLoader, taskLoader, userUpdate } from "../apiCalls"
+import { tasksLoader, taskLoader, userUpdate, deleteTask } from "../apiCalls"
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
@@ -34,7 +34,7 @@ const TaskList = (props) => {
 
         const taskArr = tasks.map((value, idx) => {
             return(
-                <div className="bg-light border" key={idx}>
+                <div className="bg-light border taskItem" key={idx}>
                     <div>
                         <Link to={`/task/${value._id}`}>
                             <h3>{value.name}</h3>
@@ -51,16 +51,16 @@ const TaskList = (props) => {
     async function handleClick(e) {
         e.preventDefault();
         const task = await taskLoader(e.target.value)
-        console.log(task)
         const updateData = userObjectUpdate(currentUser, task)
         const newUser = await userUpdate(updateData)
-        console.log(newUser)
         setScore(newUser.credits)
         setTasksDone(newUser.tasksDone)
         setCurrentUser({
             ...currentUser,
             user : newUser
         })
+        await deleteTask(e.target.value)
+        getTasks()
     }
 
     //Function Creating new user object for update
@@ -69,7 +69,6 @@ const TaskList = (props) => {
         let userData = user.user
         userData.credits = userData.credits + task.value
         userData.tasksDone = userData.tasksDone + 1
-        console.log(userData)
         return userData
     }
     
@@ -83,12 +82,14 @@ const TaskList = (props) => {
         }
     }
     
-    if (props.mods.isAuthenticated == true) {
+    if (props.mods.isAuthenticated === true) {
     return(
         <Container>
-            <Row >
-                <Col xs={{span: 2, offset: 8}}>
-                    {/* <Link to="/task/new"><Button variant="primary">New Task</Button></Link> */}
+            <Row className="taskRewardButtons align-items-center">
+                <Col xs={2} className="text-align-bottom">
+                    <h2 className="align-bottom"><u>Tasks</u></h2>
+                </Col>
+                <Col xs={{span: 2, offset: 6}}>
                     <Button variant="primary" onClick={openNewTask}>New Task</Button>
                 </Col>
                 <Col xs={2}>

@@ -9,9 +9,7 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
 const LoginUser = (props) => {
-    const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
-    const isAuthenticated = props.mods.isAuthenticated
     const setIsAuthenticated = props.mods.setIsAuthenticated
     const setScore = props.mods.setScore
     const setTasksDone = props.mods.setTasksDone
@@ -31,7 +29,6 @@ const LoginUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await loginUser(input)
-        console.log(user)
         if (user.isLoggedIn) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
@@ -55,12 +52,12 @@ const LoginUser = (props) => {
         <Form onSubmit={handleSubmit}>
             <Row>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email: </Form.Label>
-                <Form.Control type="text" onChange={handleChange} placeholder="email@email.com" name="username" />
+                <Form.Label>Username: </Form.Label>
+                <Form.Control type="text" onChange={handleChange} placeholder="Is Yours Clever?" name="username" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password: </Form.Label>
-                <Form.Control type="text" onChange={handleChange} placeholder="Make it a good'un" name="password" />
+                <Form.Control type="password" onChange={handleChange} placeholder="" name="password" />
             </Form.Group>
             </Row>
             <Row>
@@ -72,7 +69,7 @@ const LoginUser = (props) => {
                 </Col>
             </Row>    
         </Form>
-        {(errorState == true) ? <p>There was an error. Please try again</p> : null}
+        {(errorState === true) ? <p>There was an error. Please try again</p> : null}
         </Container>
     )
 }
