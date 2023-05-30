@@ -1,4 +1,4 @@
-import { tasksLoader, taskLoader, userUpdate } from "../apiCalls"
+import { tasksLoader, taskLoader, userUpdate, deleteTask } from "../apiCalls"
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
@@ -59,6 +59,8 @@ const TaskList = (props) => {
             ...currentUser,
             user : newUser
         })
+        await deleteTask(e.target.value)
+        getTasks()
     }
 
     //Function Creating new user object for update
@@ -80,7 +82,7 @@ const TaskList = (props) => {
         }
     }
     
-    if (props.mods.isAuthenticated == true) {
+    if (props.mods.isAuthenticated === true) {
     return(
         <Container>
             <Row className="taskRewardButtons align-items-center">
