@@ -34,10 +34,8 @@ function EditTask() {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            console.log(task)
             await putTask(task);
             showSent()
-            console.log(sentState)
             getTask()
             setTimeout(function() {
                 navigate(`/task/${id}`)

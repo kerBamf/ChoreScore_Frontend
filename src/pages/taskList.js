@@ -51,10 +51,8 @@ const TaskList = (props) => {
     async function handleClick(e) {
         e.preventDefault();
         const task = await taskLoader(e.target.value)
-        console.log(task)
         const updateData = userObjectUpdate(currentUser, task)
         const newUser = await userUpdate(updateData)
-        console.log(newUser)
         setScore(newUser.credits)
         setTasksDone(newUser.tasksDone)
         setCurrentUser({
@@ -69,7 +67,6 @@ const TaskList = (props) => {
         let userData = user.user
         userData.credits = userData.credits + task.value
         userData.tasksDone = userData.tasksDone + 1
-        console.log(userData)
         return userData
     }
     

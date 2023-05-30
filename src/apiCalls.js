@@ -82,7 +82,6 @@ export const postTask = async (object) => {
 
 export const putTask = async (object) => {
     try {
-        console.log(object._id)
         let newObject = {
             _id: object._id,
             name: object.name,
@@ -148,8 +147,8 @@ export const rewardLoader = async (id) => {
         reward = await reward.json()
         return reward
     } catch (err) {
-        return {}
         console.log(err)
+        return {}
     }
 }
 
@@ -222,8 +221,6 @@ export const userUpdate = async (userObject) =>  {
             }
         )
         updateStatus = await updateStatus.json()
-        console.log(userObject)
-        console.log(updateStatus)
         return userObject
     } catch(err) {
         console.log(err)

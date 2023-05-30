@@ -35,7 +35,6 @@ function EditReward() {
     const handleSubmit= async (e) => {
         try {
             e.preventDefault()
-            console.log(reward)
             await putReward(reward)
             showSent()
             getReward()

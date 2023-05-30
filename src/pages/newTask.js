@@ -26,11 +26,9 @@ const NewTask = (props) => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            console.log(taskForm)
             await postTask(taskForm)
             e.target.reset();
             showSent()
-            console.log(sentState)
             getTasks()
         } catch(err) {
             console.log(err)

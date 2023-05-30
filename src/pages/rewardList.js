@@ -60,10 +60,8 @@ const Rewards = (props) => {
     async function handleClick(e) {
         e.preventDefault()
         const reward = await rewardLoader(e.target.value)
-        console.log(reward)
         const updateData = userObjectUpdate(currentUser, reward)
         const newUser = await userUpdate(updateData)
-        console.log(newUser)
         setScore(newUser.credits)
         setCurrentUser({
             ...currentUser,
@@ -76,7 +74,6 @@ const Rewards = (props) => {
     function userObjectUpdate(user, reward) {
         let userData = user.user
         userData.credits = userData.credits - reward.cost
-        console.log(userData)
         return userData
     }
 

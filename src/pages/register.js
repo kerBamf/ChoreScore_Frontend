@@ -29,7 +29,6 @@ const RegisterUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await registerUser(input)
-        console.log(user)
         if (user.isLoggedIn) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
