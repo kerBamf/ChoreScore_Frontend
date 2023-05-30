@@ -1,8 +1,8 @@
 import { setUserToken, clearUserToken } from '../utils/authToken'
 
 export const registerUser = async (data) => {
-  const URL = "http://localhost:4000"
-  //const URL = "https://joyern.onrender.com"
+  //const URL = "http://localhost:4000"
+  const URL = "https://joyern.onrender.com"
 
     try {
       const configs = {
