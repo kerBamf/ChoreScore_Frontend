@@ -57,7 +57,7 @@ const LoginUser = (props) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password: </Form.Label>
-                <Form.Control type="text" onChange={handleChange} placeholder="" name="password" />
+                <Form.Control type="password" onChange={handleChange} placeholder="" name="password" />
             </Form.Group>
             </Row>
             <Row>
