@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Routes } from 'react-router-dom'
 import { useState } from 'react'
-import { setUserToken, clearUserToken } from './utils/authToken'
 import TaskList from './pages/taskList'
 import ShowTask from './pages/showTask'
 import NewTask from './pages/newTask'

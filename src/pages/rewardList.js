@@ -86,7 +86,7 @@ const Rewards = (props) => {
         }
     }
 
-    if (props.mods.isAuthenticated == true) {
+    if (props.mods.isAuthenticated === true) {
         return (
             <Container>
             <Row className="taskRewardButtons align-items-center">

@@ -220,7 +220,6 @@ export const userUpdate = async (userObject) =>  {
             }
             }
         )
-        updateStatus = await updateStatus.json()
         return userObject
     } catch(err) {
         console.log(err)
