@@ -9,9 +9,7 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
 const LoginUser = (props) => {
-    const currentUser = props.mods.currentUser
     const setCurrentUser = props.mods.setCurrentUser
-    const isAuthenticated = props.mods.isAuthenticated
     const setIsAuthenticated = props.mods.setIsAuthenticated
     const setScore = props.mods.setScore
     const setTasksDone = props.mods.setTasksDone
@@ -31,7 +29,6 @@ const LoginUser = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await loginUser(input)
-        console.log(user)
         if (user.isLoggedIn) {
             setCurrentUser(user)
             setIsAuthenticated(user.isLoggedIn)
@@ -72,7 +69,7 @@ const LoginUser = (props) => {
                 </Col>
             </Row>    
         </Form>
-        {(errorState == true) ? <p>There was an error. Please try again</p> : null}
+        {(errorState === true) ? <p>There was an error. Please try again</p> : null}
         </Container>
     )
 }

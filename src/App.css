@@ -18,6 +18,11 @@ body {
     letter-spacing: 30px;
 }
 
+.headerNav {
+    display: block;
+    margin: 0 0 5px 0;
+}
+
 .headerText{
     text-align: center;
 }

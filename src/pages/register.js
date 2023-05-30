@@ -1,4 +1,3 @@
-import { getUserToken } from "../utils/authToken";
 import { registerUser } from "../components/authRoutes";
 import { useNavigate } from "react-router";
 import { useState } from 'react'
