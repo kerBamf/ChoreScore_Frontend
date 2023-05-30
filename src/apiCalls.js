@@ -211,7 +211,7 @@ export const quotesLoader = async () => {
 
 export const userUpdate = async (userObject) =>  {
     try{
-        let updateStatus = await fetch(URL + '/auth/update', {
+        await fetch(URL + '/auth/update', {
             method: "PUT",
             body: JSON.stringify(userObject),
             headers: {
