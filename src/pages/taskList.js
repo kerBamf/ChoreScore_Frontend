@@ -34,7 +34,7 @@ const TaskList = (props) => {
 
         const taskArr = tasks.map((value, idx) => {
             return(
-                <div className="bg-light border" key={idx}>
+                <div className="bg-light border taskItem" key={idx}>
                     <div>
                         <Link to={`/task/${value._id}`}>
                             <h3>{value.name}</h3>
@@ -86,9 +86,11 @@ const TaskList = (props) => {
     if (props.mods.isAuthenticated == true) {
     return(
         <Container>
-            <Row >
-                <Col xs={{span: 2, offset: 8}}>
-                    {/* <Link to="/task/new"><Button variant="primary">New Task</Button></Link> */}
+            <Row className="taskRewardButtons align-items-center">
+                <Col xs={2} className="text-align-bottom">
+                    <h2 className="align-bottom"><u>Tasks</u></h2>
+                </Col>
+                <Col xs={{span: 2, offset: 6}}>
                     <Button variant="primary" onClick={openNewTask}>New Task</Button>
                 </Col>
                 <Col xs={2}>

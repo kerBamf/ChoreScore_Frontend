@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { postTask } from '../apiCalls'
 import { Link } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const NewTask = (props) => {
     const setNewTab = props.mods.setNewTab
@@ -48,25 +53,40 @@ const NewTask = (props) => {
     }
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <label>Name: <input type='text' name="name" onChange={handleChange}></input></label>
-            <label>Duration: <input type='text' name="duration" onChange={handleChange}></input></label>
-            <label>Info: <input type='text' name="info" onChange={handleChange}></input></label>
-            <label>Difficulty: 
-                <select name="difficulty" onChange={handleChange}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </label>
-            <button type='submit'>Send It</button>
-        </form>
-        {sentState ? <h4>Task Added</h4> : null}
-        {/* <Link to="/"><h4>Home</h4></Link> */}
-        <button onClick={handleClose}>Close</button>
-        </>
+        <div className="newItemForm">
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="sm-2" controlId="newTaskName">
+                <Form.Label>Name: </Form.Label>
+                <Form.Control type='text' name="name" onChange={handleChange}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newTaskDuration">
+                <Form.Label>Duration: </Form.Label>
+                <Form.Control type='number' name="duration" onChange={handleChange}></Form.Control>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newTaskDifficulty">
+                <Form.Label>Difficulty: </Form.Label>
+                    <Form.Select name="difficulty" onChange={handleChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </Form.Select>
+            </Form.Group>
+            <Form.Group className="sm-2" controlId="newTaskInfo">
+                <Form.Label>Info: </Form.Label>
+                <Form.Control type='text' name="info" onChange={handleChange}></Form.Control>
+            </Form.Group>
+        {sentState ? <h5>Task Added!</h5> : null}
+        <Row className="inputButtonRow">
+            <Col sm={2}>
+                <Button variant="primary" type='submit'>Create</Button>
+            </Col>
+            <Col sm={2}>
+                <Button variant="light" onClick={handleClose}>Close</Button>
+            </Col>
+        </Row>
+        </Form>
+        </div>
     )
 }
 

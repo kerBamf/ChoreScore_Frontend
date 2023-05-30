@@ -1,8 +1,8 @@
 import { setUserToken, clearUserToken } from '../utils/authToken'
 
 export const registerUser = async (data) => {
-  //const URL = "http://localhost:4000"
-  const URL = "https://joyern.onrender.com"
+  const URL = "http://localhost:4000"
+  //const URL = "https://joyern.onrender.com"
 
     try {
       const configs = {
@@ -28,8 +28,8 @@ export const registerUser = async (data) => {
 }
 
  export const loginUser = async (data) => {
-  //const URL = "http://localhost:4000"
-  const URL = "https://joyern.onrender.com"
+  const URL = "http://localhost:4000"
+  //const URL = "https://joyern.onrender.com"
     try {
       const configs = {
         method: "POST",
@@ -53,8 +53,8 @@ export const registerUser = async (data) => {
   }
 
   export const logoutUser = async (data) => {
-    //const URL = "http://localhost:4000"
-    const URL = "https://joyern.onrender.com"
+    const URL = "http://localhost:4000"
+    // const URL = "https://joyern.onrender.com"
     try{
         let response = await fetch(URL + '/auth/logout')
         response = response.json()

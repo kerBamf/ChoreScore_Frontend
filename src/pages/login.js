@@ -55,12 +55,12 @@ const LoginUser = (props) => {
         <Form onSubmit={handleSubmit}>
             <Row>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email: </Form.Label>
-                <Form.Control type="text" onChange={handleChange} placeholder="email@email.com" name="username" />
+                <Form.Label>Username: </Form.Label>
+                <Form.Control type="text" onChange={handleChange} placeholder="Is Yours Clever?" name="username" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password: </Form.Label>
-                <Form.Control type="text" onChange={handleChange} placeholder="Make it a good'un" name="password" />
+                <Form.Control type="text" onChange={handleChange} placeholder="" name="password" />
             </Form.Group>
             </Row>
             <Row>

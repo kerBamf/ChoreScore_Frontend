@@ -45,12 +45,15 @@ function Header(props) {
 
     return(
         
-            <Container>
-                <Row className="justify-content-sm-center">
-                    <Col><h1 className="appTitle">JOYERN</h1></Col>
+            <Container className="headerContainer">
+                <Row>
+                    <Col sm={{offset: 1}}><h1 className="appTitle">JOYERN</h1></Col>
+                    <Col sm="auto"> 
+                        {(isAuthenticated == true) ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
+                    </Col>
                 </Row>
                 <Row>
-                    <Col sm={2} >
+                    <Col sm={3} >
                         {username ? <h4 className="headerText">{username}</h4> : null}
                         {logoutText ? <Col><p>Logged Out!</p></Col> : null}
                     </Col>
@@ -59,9 +62,6 @@ function Header(props) {
                     </Col>
                     <Col sm={4} className="justify-content-sm-center">
                         <h5 className="headerText">Tasks Completed: {tasksDone}</h5>
-                    </Col>
-                    <Col> 
-                        {(isAuthenticated == true) ? <Button onClick={handleClick}>Logout</Button> : <Button onClick={handleClick}>Login</Button>}
                     </Col>
                 </Row>
             </Container>
