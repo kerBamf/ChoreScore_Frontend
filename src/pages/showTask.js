@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { taskLoader, deleteTask } from '../apiCalls'
 import { useParams } from 'react-router'
 import { Link, useNavigate } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 
 function ShowTask() {
     const [task, setTask] = useState({})
@@ -38,11 +40,13 @@ function ShowTask() {
         <h2>{task.name}</h2>
         <h3>Value: {task.value}</h3>
         <p>{task.info}</p>
-        <Link to={`/task/edit/${task._id}`}><button>Edit</button></Link>
-        <button onClick={handleClick}>Delete</button>
-        <Link to="/">
-            <h3>Home</h3>
-        </Link>
+        <Container className="text-left">
+                <Link to={`/task/edit/${task._id}`}><Button variant="primary" className="showButtons">Edit</Button></Link>
+                <Button variant="danger" onClick={handleClick}className="showButtons">Delete</Button>
+                <Link to="/">
+                    <Button variant="secondary" className="showButtons">Cancel</Button>
+                </Link>
+        </Container>
         </>
     ) } else {
         return(<h2>Loading...</h2>)

@@ -31,6 +31,10 @@ body {
     text-align: center;
 }
 
+.tabButton {
+    color: white;
+}
+
 .taskItem {
     background-color: rgb(218, 229, 236);
     border-radius: 10px;
@@ -45,6 +49,10 @@ body {
 
 .inputButtonRow {
     margin: 6px;
+}
+
+.showButtons {
+    margin: 0 3px;
 }
 
 .quoteBox {

@@ -97,7 +97,7 @@ const Rewards = (props) => {
                     <Button variant="primary" onClick={openNewReward}>New Reward</Button>
                 </Col>
                 <Col xs={2}>
-                    <Link to="/"><Button variant="info">Tasks</Button></Link>
+                    <Link to="/"><Button variant="info" className="tabButton">Tasks</Button></Link>
                 </Col>
             </Row>
             <Stack gap={2}>

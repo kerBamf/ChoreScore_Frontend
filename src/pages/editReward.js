@@ -71,7 +71,7 @@ function EditReward() {
                 <Form.Label>Description: </Form.Label>
                 <Form.Control type='text' name="description" onChange={handleChange} placeholder={reward.description}></Form.Control>
             </Form.Group>
-        {sentState ? <h2>Updated! Rerouting to show page...</h2> : null}
+        {sentState ? <h4>Updated! Rerouting to show page...</h4> : null}
         <Row className="inputButtonRow">
             <Col sm={2}>
                 <Button variant="primary" type='submit'>Update</Button>
