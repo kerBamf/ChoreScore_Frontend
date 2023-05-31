@@ -9,11 +9,15 @@ In order to use the app, the user needs to sign in or create a new account. JOYE
 
 ## Tech and Build Approach
 
+Original Wireframe: ![wireframe](https://imgur.com/DWXc6Vg "")
+
 As previously stated, JOYERN is a MERN app. React-Bootstrap is utilized for most of the styling with custom CSS as needed, and token-based auth is utilized to facilitate user login. Auth tokens are stored in the local browser memory, and are erased upon logout. Any error logging in or registering an account also forces deletion of the auth token, making it more difficult to accidentally gain access to the app. UseState is widely used across the app, with the primary use being the handling of user data as it is updated.
 
 The heart of the app is the task and reward list. Each are dynamically loaded as individual items are created and are tied to a user account via Mongo user-ID referencing when sending requests to the back-end. I wanted each task and reward to be self-contained, meaning most of the functionality would reside within each item as it appears; this would mean less navigation on the part of the user and a more concise interface. As prompted by a TA, I implemented some aspects of CRUD into the main lists, with the "new item" forms dropping directly into the associated list. This allows for users to see each item as they are added in real-time, and the users can continue to add as many items as they like; when done they need only close the form. This way the user never needs to leave the list itself as they are adding items. Unfortunately I did not have time to incorporate the full CRUD functionality in this way, but I may incorporate it in future edits. By focusing on the core functionality of the lists (adding and removing items and updating user scores), I was able to build the app in a "bare-bones" state, then bolt on complexities as they made sense, especially when it came to the final pieces such as Auth and user/item relationships.
 
 In order to create a more centralized location for logic, I offloaded all API calls to one file (save for Auth-specific functions), exporting different functions as needed across the site. This made it very easy to plug-and-play different database requests wherever they were needed in the app without needing to search for them across different pages/components.
+
+Completed App: ![screenshot](https://imgur.com/KaMGAt3 "")
 
 ## Difficulties and Potential Issues
 
