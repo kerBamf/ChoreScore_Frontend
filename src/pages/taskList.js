@@ -93,7 +93,7 @@ const TaskList = (props) => {
                     <Button variant="primary" onClick={openNewTask}>New Task</Button>
                 </Col>
                 <Col xs={2}>
-                    <Link to="/rewards"><Button variant="info">Rewards</Button></Link>
+                    <Link to="/rewards"><Button variant="info" className="tabButton">Rewards</Button></Link>
                 </Col>
             </Row>
             <Stack gap={2}>
