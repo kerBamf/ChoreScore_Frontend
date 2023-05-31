@@ -9,7 +9,7 @@ In order to use the app, the user needs to sign in or create a new account. JOYE
 
 ## Tech and Build Approach
 
-Original Wireframe: ![wireframe](https://imgur.com/DWXc6Vg "")
+Original Wireframe: https://imgur.com/DWXc6Vg
 
 As previously stated, JOYERN is a MERN app. React-Bootstrap is utilized for most of the styling with custom CSS as needed, and token-based auth is utilized to facilitate user login. Auth tokens are stored in the local browser memory, and are erased upon logout. Any error logging in or registering an account also forces deletion of the auth token, making it more difficult to accidentally gain access to the app. UseState is widely used across the app, with the primary use being the handling of user data as it is updated.
 
@@ -17,7 +17,7 @@ The heart of the app is the task and reward list. Each are dynamically loaded as
 
 In order to create a more centralized location for logic, I offloaded all API calls to one file (save for Auth-specific functions), exporting different functions as needed across the site. This made it very easy to plug-and-play different database requests wherever they were needed in the app without needing to search for them across different pages/components.
 
-Completed App: ![screenshot](https://imgur.com/KaMGAt3 "")
+Completed App: https://imgur.com/KaMGAt3
 
 ## Difficulties and Potential Issues
 
